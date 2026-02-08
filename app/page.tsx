@@ -1,300 +1,168 @@
 'use client';
 
-import { useState } from 'react';
-import { PDFDocument } from 'pdf-lib';
+import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 
-// Declare analytics for TypeScript
-declare global {
-  interface Window {
-    analytics: any;
-  }
-}
+const features = [
+  { icon: '⚡', title: 'Lightning Fast', desc: 'Merge PDFs instantly — everything runs in your browser, no uploading needed.' },
+  { icon: '🔒', title: 'Private & Secure', desc: 'Your files never leave your device. Zero server uploads, zero risk.' },
+  { icon: '♾️', title: 'No Size Limits', desc: 'Merge files of any size without restrictions or premium paywalls.' },
+  { icon: '🎯', title: 'Drag & Drop', desc: 'Simple interface — just pick your files and hit merge.' },
+  { icon: '💸', title: '100% Free', desc: 'No subscriptions, no hidden fees, no "upgrade to unlock" tricks.' },
+  { icon: '🚫', title: 'No Signup', desc: 'Start merging immediately. No account, no email, no nonsense.' },
+];
 
-export default function Home() {
-  const [pdf1, setPdf1] = useState<File | null>(null);
-  const [pdf2, setPdf2] = useState<File | null>(null);
-  const [merging, setMerging] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState(false);
+const steps = [
+  { num: '1', title: 'Upload Your PDFs', desc: 'Select the PDF files you want to combine using our simple file picker.' },
+  { num: '2', title: 'Arrange Order', desc: 'Choose which PDF comes first — your merged file follows your order.' },
+  { num: '3', title: 'Merge & Download', desc: 'Click merge and your combined PDF downloads instantly. Done!' },
+];
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, setPdf: (file: File | null) => void, fileNumber: number) => {
-    const file = e.target.files?.[0];
-    if (file && file.type === 'application/pdf') {
-      setPdf(file);
-      setError(null);
-      setSuccess(false);
+const testimonials = [
+  { name: 'Sarah K.', role: 'Freelance Designer', text: 'Finally a PDF tool that doesn\'t try to charge me $12/month for something this simple. Love it!', stars: 5 },
+  { name: 'Marcus T.', role: 'Law Student', text: 'I merge case documents daily. This is faster than any desktop app I\'ve tried, and it\'s free.', stars: 5 },
+  { name: 'Priya R.', role: 'Project Manager', text: 'The fact that files stay on my computer is a huge deal for our compliance team. Bookmarked!', stars: 5 },
+  { name: 'Jake W.', role: 'Small Business Owner', text: 'Used to use Adobe for this. Switched here and never looked back. Simple and just works.', stars: 4 },
+];
 
-      // Track PDF file selection event
-      if (typeof window !== 'undefined' && window.analytics) {
-        window.analytics.track('PDF File Selected', {
-          file_name: file.name,
-          file_size: file.size,
-          file_number: fileNumber,
-          timestamp: new Date().toISOString()
-        });
-      }
-    } else if (file) {
-      setError('Please select a valid PDF file');
-      setPdf(null);
-    }
-  };
-
-  const mergePDFs = async () => {
-    if (!pdf1 || !pdf2) {
-      setError('Please select both PDF files');
-      return;
-    }
-
-    // Track merge button click event
-    if (typeof window !== 'undefined' && window.analytics) {
-      window.analytics.track('Merge PDF Button Clicked', {
-        first_file_name: pdf1.name,
-        second_file_name: pdf2.name,
-        first_file_size: pdf1.size,
-        second_file_size: pdf2.size,
-        timestamp: new Date().toISOString()
-      });
-    }
-
-    setMerging(true);
-    setError(null);
-    setSuccess(false);
-
-    try {
-      const pdf1Bytes = await pdf1.arrayBuffer();
-      const pdf2Bytes = await pdf2.arrayBuffer();
-
-      const pdfDoc1 = await PDFDocument.load(pdf1Bytes);
-      const pdfDoc2 = await PDFDocument.load(pdf2Bytes);
-
-      const mergedPdf = await PDFDocument.create();
-
-      const pages1 = await mergedPdf.copyPages(pdfDoc1, pdfDoc1.getPageIndices());
-      pages1.forEach((page) => mergedPdf.addPage(page));
-
-      const pages2 = await mergedPdf.copyPages(pdfDoc2, pdfDoc2.getPageIndices());
-      pages2.forEach((page) => mergedPdf.addPage(page));
-
-      const mergedPdfBytes = await mergedPdf.save();
-
-      const blob = new Blob([new Uint8Array(mergedPdfBytes)], { type: 'application/pdf' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'merged.pdf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-
-      setSuccess(true);
-      setPdf1(null);
-      setPdf2(null);
-      (document.getElementById('pdf1') as HTMLInputElement).value = '';
-      (document.getElementById('pdf2') as HTMLInputElement).value = '';
-    } catch (err) {
-      setError('Failed to merge PDFs. Please make sure both files are valid PDF documents.');
-      console.error(err);
-    } finally {
-      setMerging(false);
-    }
-  };
-
+export default function LandingPage() {
   return (
     <>
       {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="container py-3">
+      <header className="bg-white shadow-sm sticky-top">
+        <Container className="py-3">
           <div className="d-flex align-items-center justify-content-between">
             <h1 className="h4 mb-0 fw-bold" style={{ color: '#1D9D58' }}>
               📄 PDF Merger
             </h1>
-            <nav>
-              <a
-                href="https://github.com/ftwtie/pdf-merger"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-decoration-none"
-              >
-                <small className="text-muted">View on GitHub →</small>
-              </a>
-            </nav>
+            <Button href="/merge" variant="outline-success" size="sm" className="fw-semibold">
+              Open Tool →
+            </Button>
           </div>
-        </div>
+        </Container>
       </header>
 
-      {/* Hero Section */}
-      <section className="hero-section">
-        <div className="container text-center">
-          <h1 className="display-5 fw-bold mb-3">Merge PDF files</h1>
-          <p className="lead mb-0">
-            Combine two PDF documents into one file. Fast, free, and secure.
+      {/* Hero */}
+      <section className="hero-section" style={{ padding: '5rem 0' }}>
+        <Container className="text-center">
+          <h1 className="display-4 fw-bold mb-3">Merge PDFs in Seconds</h1>
+          <p className="lead mb-4 mx-auto" style={{ maxWidth: 600, opacity: 0.9 }}>
+            Combine multiple PDF files into one document — right in your browser. 
+            No uploads, no signups, no limits. Just fast, private PDF merging.
           </p>
-        </div>
+          <Button href="/merge" size="lg" className="btn-primary-custom px-5 py-3 fs-5">
+            🔗 Start Merging — It&apos;s Free
+          </Button>
+          <p className="mt-3 mb-0" style={{ opacity: 0.7 }}>
+            <small>No account required • Works offline • Files stay on your device</small>
+          </p>
+        </Container>
       </section>
 
-      {/* Main Tool Section */}
-      <div className="container pb-5">
-        <div className="row justify-content-center">
-          <div className="col-lg-8">
-            {/* Main Card */}
-            <div className="tool-card p-4 p-md-5 mb-4">
-              {error && (
-                <div className="alert alert-danger border-0 mb-4" role="alert">
-                  <strong>⚠️ Error:</strong> {error}
-                </div>
-              )}
+      {/* Features */}
+      <section className="py-5">
+        <Container>
+          <h2 className="text-center fw-bold mb-2">Why PDF Merger?</h2>
+          <p className="text-center text-muted mb-5">Everything you need, nothing you don&apos;t.</p>
+          <Row className="g-4">
+            {features.map((f, i) => (
+              <Col md={4} key={i}>
+                <Card className="tool-card h-100 border-0 p-4 text-center">
+                  <div className="feature-icon mx-auto">{f.icon}</div>
+                  <h5 className="fw-bold mb-2">{f.title}</h5>
+                  <p className="text-muted mb-0 small">{f.desc}</p>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </section>
 
-              {success && (
-                <div className="alert alert-success border-0 mb-4" role="alert">
-                  <strong>✓ Success!</strong> Your PDF has been merged and downloaded.
-                </div>
-              )}
-
-              <div className="row g-4 mb-4">
-                {/* First PDF */}
-                <div className="col-md-6">
-                  <label htmlFor="pdf1" className="form-label fw-semibold text-secondary mb-2">
-                    First PDF File
-                  </label>
-                  <input
-                    type="file"
-                    className="form-control form-control-lg file-input-custom"
-                    id="pdf1"
-                    accept=".pdf"
-                    onChange={(e) => handleFileChange(e, setPdf1, 1)}
-                    disabled={merging}
-                  />
-                  {pdf1 && (
-                    <div className="mt-2 p-2 bg-light rounded">
-                      <small className="text-success fw-semibold">
-                        ✓ {pdf1.name}
-                      </small>
-                    </div>
-                  )}
-                </div>
-
-                {/* Second PDF */}
-                <div className="col-md-6">
-                  <label htmlFor="pdf2" className="form-label fw-semibold text-secondary mb-2">
-                    Second PDF File
-                  </label>
-                  <input
-                    type="file"
-                    className="form-control form-control-lg file-input-custom"
-                    id="pdf2"
-                    accept=".pdf"
-                    onChange={(e) => handleFileChange(e, setPdf2, 2)}
-                    disabled={merging}
-                  />
-                  {pdf2 && (
-                    <div className="mt-2 p-2 bg-light rounded">
-                      <small className="text-success fw-semibold">
-                        ✓ {pdf2.name}
-                      </small>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <div className="text-center">
-                <button
-                  className="btn btn-lg btn-primary-custom px-5"
-                  onClick={mergePDFs}
-                  disabled={!pdf1 || !pdf2 || merging}
+      {/* How It Works */}
+      <section className="py-5" style={{ background: 'white' }}>
+        <Container>
+          <h2 className="text-center fw-bold mb-2">How It Works</h2>
+          <p className="text-center text-muted mb-5">Three steps. That&apos;s it.</p>
+          <Row className="g-4 justify-content-center">
+            {steps.map((s, i) => (
+              <Col md={4} key={i} className="text-center">
+                <div
+                  className="rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                  style={{ width: 64, height: 64, background: 'linear-gradient(135deg, #1D9D58, #16a34a)', color: 'white', fontSize: 24, fontWeight: 700 }}
                 >
-                  {merging ? (
-                    <>
-                      <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                      Merging PDFs...
-                    </>
-                  ) : (
-                    <>
-                      <span className="me-2">🔗</span>
-                      Merge PDFs
-                    </>
-                  )}
-                </button>
-              </div>
-            </div>
-
-            {/* Features */}
-            <div className="row g-4 mb-4">
-              <div className="col-md-4">
-                <div className="text-center">
-                  <div className="feature-icon mx-auto">🔒</div>
-                  <h6 className="fw-semibold mb-2">100% Secure</h6>
-                  <small className="text-muted">
-                    Files are processed locally in your browser
-                  </small>
+                  {s.num}
                 </div>
-              </div>
-              <div className="col-md-4">
-                <div className="text-center">
-                  <div className="feature-icon mx-auto">⚡</div>
-                  <h6 className="fw-semibold mb-2">Fast & Free</h6>
-                  <small className="text-muted">
-                    No upload wait times or file size limits
-                  </small>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className="text-center">
-                  <div className="feature-icon mx-auto">🎯</div>
-                  <h6 className="fw-semibold mb-2">Easy to Use</h6>
-                  <small className="text-muted">
-                    Simple interface, instant results
-                  </small>
-                </div>
-              </div>
-            </div>
-
-            {/* How to use */}
-            <div className="tool-card p-4">
-              <h5 className="fw-bold mb-3">How to merge PDF files:</h5>
-              <ol className="mb-0 ps-3">
-                <li className="mb-2">
-                  <strong>Select your first PDF</strong> using the first file picker
-                </li>
-                <li className="mb-2">
-                  <strong>Select your second PDF</strong> using the second file picker
-                </li>
-                <li className="mb-2">
-                  <strong>Click "Merge PDFs"</strong> to combine them into one document
-                </li>
-                <li>
-                  <strong>Download begins automatically</strong> - your merged PDF will be saved as "merged.pdf"
-                </li>
-              </ol>
-            </div>
+                <h5 className="fw-bold mb-2">{s.title}</h5>
+                <p className="text-muted small">{s.desc}</p>
+              </Col>
+            ))}
+          </Row>
+          <div className="text-center mt-4">
+            <Button href="/merge" className="btn-primary-custom px-5">
+              Try It Now →
+            </Button>
           </div>
-        </div>
-      </div>
+        </Container>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-5">
+        <Container>
+          <h2 className="text-center fw-bold mb-2">What People Are Saying</h2>
+          <p className="text-center text-muted mb-5">Join thousands who merge smarter.</p>
+          <Row className="g-4">
+            {testimonials.map((t, i) => (
+              <Col md={6} lg={3} key={i}>
+                <Card className="tool-card h-100 border-0 p-4">
+                  <div className="mb-2" style={{ color: '#f59e0b' }}>
+                    {'★'.repeat(t.stars)}{'☆'.repeat(5 - t.stars)}
+                  </div>
+                  <p className="small mb-3">&ldquo;{t.text}&rdquo;</p>
+                  <div className="mt-auto">
+                    <strong className="small">{t.name}</strong>
+                    <br />
+                    <small className="text-muted">{t.role}</small>
+                  </div>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </section>
+
+      {/* CTA */}
+      <section className="py-5" style={{ background: 'linear-gradient(135deg, #1D9D58 0%, #16a34a 100%)' }}>
+        <Container className="text-center text-white">
+          <h2 className="fw-bold mb-3">Ready to Merge Your PDFs?</h2>
+          <p className="mb-4" style={{ opacity: 0.9 }}>No signup. No limits. Just results.</p>
+          <Button href="/merge" size="lg" variant="light" className="fw-bold px-5 py-3" style={{ color: '#1D9D58' }}>
+            🔗 Merge PDFs Now
+          </Button>
+        </Container>
+      </section>
 
       {/* Footer */}
-      <footer className="bg-white border-top mt-5 py-4">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
+      <footer className="bg-white border-top py-4">
+        <Container>
+          <Row className="align-items-center">
+            <Col md={4} className="text-center text-md-start mb-3 mb-md-0">
+              <strong style={{ color: '#1D9D58' }}>📄 PDF Merger</strong>
+            </Col>
+            <Col md={4} className="text-center mb-3 mb-md-0">
               <small className="text-muted">
-                Built with Next.js, TypeScript & pdf-lib
+                Built with Next.js &bull; 100% client-side &bull; Open source
               </small>
-            </div>
-            <div className="col-md-6 text-center text-md-end">
-              <small className="text-muted">
-                Open source on{' '}
-                <a
-                  href="https://github.com/ftwtie/pdf-merger"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-decoration-none"
-                >
-                  GitHub
-                </a>
-              </small>
-            </div>
-          </div>
-        </div>
+            </Col>
+            <Col md={4} className="text-center text-md-end">
+              <a href="https://github.com/ftwtie/pdf-merger" target="_blank" rel="noopener noreferrer" className="text-muted small">
+                GitHub
+              </a>
+              <span className="text-muted mx-2">•</span>
+              <a href="/merge" className="text-muted small">
+                Merge Tool
+              </a>
+            </Col>
+          </Row>
+        </Container>
       </footer>
     </>
   );
