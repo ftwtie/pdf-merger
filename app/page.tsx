@@ -3,6 +3,13 @@
 import { useState } from 'react';
 import { PDFDocument } from 'pdf-lib';
 
+// Declare analytics for TypeScript
+declare global {
+  interface Window {
+    analytics: any;
+  }
+}
+
 export default function Home() {
   const [pdf1, setPdf1] = useState<File | null>(null);
   const [pdf2, setPdf2] = useState<File | null>(null);
@@ -10,12 +17,22 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, setPdf: (file: File | null) => void) => {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, setPdf: (file: File | null) => void, fileNumber: number) => {
     const file = e.target.files?.[0];
     if (file && file.type === 'application/pdf') {
       setPdf(file);
       setError(null);
       setSuccess(false);
+
+      // Track PDF file selection event
+      if (typeof window !== 'undefined' && window.analytics) {
+        window.analytics.track('PDF File Selected', {
+          file_name: file.name,
+          file_size: file.size,
+          file_number: fileNumber,
+          timestamp: new Date().toISOString()
+        });
+      }
     } else if (file) {
       setError('Please select a valid PDF file');
       setPdf(null);
@@ -26,6 +43,17 @@ export default function Home() {
     if (!pdf1 || !pdf2) {
       setError('Please select both PDF files');
       return;
+    }
+
+    // Track merge button click event
+    if (typeof window !== 'undefined' && window.analytics) {
+      window.analytics.track('Merge PDF Button Clicked', {
+        first_file_name: pdf1.name,
+        second_file_name: pdf2.name,
+        first_file_size: pdf1.size,
+        second_file_size: pdf2.size,
+        timestamp: new Date().toISOString()
+      });
     }
 
     setMerging(true);
@@ -134,7 +162,7 @@ export default function Home() {
                     className="form-control form-control-lg file-input-custom"
                     id="pdf1"
                     accept=".pdf"
-                    onChange={(e) => handleFileChange(e, setPdf1)}
+                    onChange={(e) => handleFileChange(e, setPdf1, 1)}
                     disabled={merging}
                   />
                   {pdf1 && (
@@ -156,7 +184,7 @@ export default function Home() {
                     className="form-control form-control-lg file-input-custom"
                     id="pdf2"
                     accept=".pdf"
-                    onChange={(e) => handleFileChange(e, setPdf2)}
+                    onChange={(e) => handleFileChange(e, setPdf2, 2)}
                     disabled={merging}
                   />
                   {pdf2 && (
