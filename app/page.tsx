@@ -53,7 +53,7 @@ export default function Home() {
       const mergedPdfBytes = await mergedPdf.save();
 
       // Create a blob and download
-      const blob = new Blob([mergedPdfBytes], { type: 'application/pdf' });
+      const blob = new Blob([mergedPdfBytes.buffer], { type: 'application/pdf' });
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
