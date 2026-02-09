@@ -122,7 +122,7 @@ export default function LandingPage() {
       </section>
 
       {/* Available Tools */}
-      <section className="py-5" style={{ background: 'white', position: 'relative', zIndex: 1 }}>
+      <section className="py-5" style={{ background: 'white', position: 'relative', zIndex: 1, overflow: 'hidden' }}>
         <Container>
           <div className="text-center mb-5">
             <h2 className="section-title mb-2">Available Tools</h2>

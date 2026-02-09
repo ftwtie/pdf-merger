@@ -183,6 +183,8 @@ a:hover {
   box-shadow: var(--shadow-hover);
   transform: translateY(-4px);
   border-color: rgba(26, 86, 219, 0.12);
+  position: relative;
+  z-index: 1;
 }
 
 /* Feature icons */
@@ -380,8 +382,9 @@ a:hover {
   box-shadow: var(--shadow);
   padding: 2rem;
   margin-top: -3rem;
+  margin-bottom: 1rem;
   position: relative;
-  z-index: 10;
+  z-index: 2;
 }
 
 .stat-item {
