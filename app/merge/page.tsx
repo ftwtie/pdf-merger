@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { PDFDocument } from 'pdf-lib';
+import { ShieldIcon } from '../components/Logo';
 
 // Declare analytics for TypeScript
 declare global {
@@ -107,12 +108,12 @@ export default function Home() {
         <div className="container py-3">
           <div className="d-flex align-items-center justify-content-between">
             <a href="/" className="d-flex align-items-center gap-2 text-decoration-none">
-              <div style={{ width: 36, height: 36, background: 'linear-gradient(135deg, #6C5CE7, #00CEC9)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 700, fontSize: 16 }}>P</div>
-              <span className="fw-bold fs-5" style={{ color: '#1A1A2E' }}>PDF Merger</span>
+              <ShieldIcon size={36} />
+              <span className="fw-bold fs-5" style={{ color: '#0f172a', fontFamily: 'Outfit, sans-serif' }}>PDF <span style={{ color: '#1a56db' }}>Merger</span></span>
             </a>
             <div className="d-flex align-items-center gap-3">
-              <a href="/merge" className="text-decoration-none fw-semibold" style={{ color: '#6C5CE7' }}>Merge</a>
-              <a href="/split" className="text-decoration-none fw-semibold" style={{ color: '#6B7280' }}>Split</a>
+              <a href="/merge" className="text-decoration-none nav-link-custom" style={{ color: '#1a56db' }}>Merge</a>
+              <a href="/split" className="text-decoration-none nav-link-custom" style={{ color: '#64748b' }}>Split</a>
               <span className="security-badge d-none d-md-flex">🛡️ 100% Secure</span>
             </div>
           </div>
@@ -276,8 +277,8 @@ export default function Home() {
           <div className="row align-items-center">
             <div className="col-md-4 text-center text-md-start mb-3 mb-md-0">
               <a href="/" className="d-flex align-items-center gap-2 justify-content-center justify-content-md-start text-decoration-none">
-                <div style={{ width: 28, height: 28, background: 'linear-gradient(135deg, #6C5CE7, #00CEC9)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 700, fontSize: 13 }}>P</div>
-                <span className="fw-bold" style={{ color: 'rgba(255,255,255,0.9)' }}>PDF Merger</span>
+                <ShieldIcon size={28} />
+                <span className="fw-bold" style={{ color: 'rgba(255,255,255,0.9)', fontFamily: 'Outfit, sans-serif' }}>PDF <span style={{ color: '#60a5fa' }}>Merger</span></span>
               </a>
             </div>
             <div className="col-md-4 text-center mb-3 mb-md-0">

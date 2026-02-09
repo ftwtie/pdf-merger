@@ -3,6 +3,7 @@
 import { useState, useCallback } from 'react';
 import { PDFDocument } from 'pdf-lib';
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import { ShieldIcon } from '../components/Logo';
 
 declare global {
   interface Window {
@@ -144,12 +145,12 @@ export default function SplitPage() {
         <Container className="py-3">
           <div className="d-flex align-items-center justify-content-between">
             <a href="/" className="d-flex align-items-center gap-2 text-decoration-none">
-              <div style={{ width: 36, height: 36, background: 'linear-gradient(135deg, #6C5CE7, #00CEC9)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 700, fontSize: 16 }}>P</div>
-              <span className="fw-bold fs-5" style={{ color: '#1A1A2E' }}>PDF Merger</span>
+              <ShieldIcon size={36} />
+              <span className="fw-bold fs-5" style={{ color: '#0f172a', fontFamily: 'Outfit, sans-serif' }}>PDF <span style={{ color: '#1a56db' }}>Merger</span></span>
             </a>
             <div className="d-flex align-items-center gap-3">
-              <a href="/merge" className="text-decoration-none fw-semibold" style={{ color: '#6B7280' }}>Merge</a>
-              <a href="/split" className="text-decoration-none fw-semibold" style={{ color: '#6C5CE7' }}>Split</a>
+              <a href="/merge" className="text-decoration-none nav-link-custom" style={{ color: '#64748b' }}>Merge</a>
+              <a href="/split" className="text-decoration-none nav-link-custom" style={{ color: '#1a56db' }}>Split</a>
               <span className="security-badge d-none d-md-flex">🛡️ 100% Secure</span>
             </div>
           </div>
@@ -200,7 +201,7 @@ export default function SplitPage() {
                 />
                 {file && (
                   <div className="mt-2 p-2 rounded" style={{ background: 'rgba(108,92,231,0.05)' }}>
-                    <small className="fw-semibold" style={{ color: '#6C5CE7' }}>
+                    <small className="fw-semibold" style={{ color: '#1a56db' }}>
                       ✓ {file.name} — {totalPages} page{totalPages !== 1 ? 's' : ''}
                     </small>
                   </div>
@@ -222,7 +223,7 @@ export default function SplitPage() {
                           key={key}
                           className="btn flex-fill text-start p-3"
                           style={{
-                            border: mode === key ? '2px solid #6C5CE7' : '2px solid #E5E7EB',
+                            border: mode === key ? '2px solid #1a56db' : '2px solid #E5E7EB',
                             borderRadius: 12,
                             background: mode === key ? 'rgba(108,92,231,0.05)' : 'white',
                           }}
@@ -251,8 +252,8 @@ export default function SplitPage() {
                               height: 48,
                               borderRadius: 10,
                               fontWeight: 600,
-                              border: selectedPages.has(i) ? '2px solid #6C5CE7' : '2px solid #E5E7EB',
-                              background: selectedPages.has(i) ? 'linear-gradient(135deg, #6C5CE7, #A29BFE)' : 'white',
+                              border: selectedPages.has(i) ? '2px solid #1a56db' : '2px solid #E5E7EB',
+                              background: selectedPages.has(i) ? 'linear-gradient(135deg, #1a56db, #3b82f6)' : 'white',
                               color: selectedPages.has(i) ? 'white' : '#4B5563',
                             }}
                             onClick={() => togglePage(i)}
@@ -365,8 +366,8 @@ export default function SplitPage() {
           <Row className="align-items-center">
             <Col md={4} className="text-center text-md-start mb-3 mb-md-0">
               <a href="/" className="d-flex align-items-center gap-2 justify-content-center justify-content-md-start text-decoration-none">
-                <div style={{ width: 28, height: 28, background: 'linear-gradient(135deg, #6C5CE7, #00CEC9)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 700, fontSize: 13 }}>P</div>
-                <span className="fw-bold" style={{ color: 'rgba(255,255,255,0.9)' }}>PDF Merger</span>
+                <ShieldIcon size={28} />
+                <span className="fw-bold" style={{ color: 'rgba(255,255,255,0.9)', fontFamily: 'Outfit, sans-serif' }}>PDF <span style={{ color: '#60a5fa' }}>Merger</span></span>
               </a>
             </Col>
             <Col md={4} className="text-center mb-3 mb-md-0">

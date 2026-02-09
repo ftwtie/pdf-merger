@@ -1,6 +1,7 @@
 'use client';
 
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
+import { LogoFull, ShieldIcon } from './components/Logo';
 
 const features = [
   { icon: '🛡️', title: '100% Secure', desc: 'Your files are processed entirely in your browser. Nothing is uploaded to any server — ever.' },
@@ -38,19 +39,19 @@ export default function LandingPage() {
       <header className="site-header sticky-top">
         <Container className="py-3">
           <div className="d-flex align-items-center justify-content-between">
-            <div className="d-flex align-items-center gap-2">
-              <div style={{ width: 36, height: 36, background: 'linear-gradient(135deg, #6C5CE7, #00CEC9)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 700, fontSize: 16 }}>
-                P
+            <a href="/" className="d-flex align-items-center gap-2 text-decoration-none">
+              <ShieldIcon size={36} />
+              <div>
+                <span className="fw-bold fs-5" style={{ color: '#0f172a', fontFamily: 'Outfit, sans-serif' }}>PDF <span style={{ color: '#1a56db' }}>Merger</span></span>
               </div>
-              <span className="fw-bold fs-5" style={{ color: '#1A1A2E' }}>PDF Merger</span>
-            </div>
+            </a>
             <div className="d-flex align-items-center gap-3">
               <a href="/merge" className="text-decoration-none fw-semibold" style={{ color: '#6B7280' }}>Merge</a>
               <a href="/split" className="text-decoration-none fw-semibold" style={{ color: '#6B7280' }}>Split</a>
               <span className="security-badge d-none d-md-flex">
                 🛡️ 100% Secure
               </span>
-              <Button href="/merge" style={{ background: 'linear-gradient(135deg, #6C5CE7, #A29BFE)', border: 'none', borderRadius: 10, fontWeight: 600, padding: '10px 24px' }}>
+              <Button href="/merge" style={{ background: 'linear-gradient(135deg, #1a56db, #3b82f6)', border: 'none', borderRadius: 10, fontFamily: 'Outfit, sans-serif', fontWeight: 700, padding: '10px 24px' }}>
                 Open Tools →
               </Button>
             </div>
@@ -190,10 +191,8 @@ export default function LandingPage() {
           <Row className="align-items-center">
             <Col md={4} className="text-center text-md-start mb-3 mb-md-0">
               <div className="d-flex align-items-center gap-2 justify-content-center justify-content-md-start">
-                <div style={{ width: 28, height: 28, background: 'linear-gradient(135deg, #6C5CE7, #00CEC9)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 700, fontSize: 13 }}>
-                  P
-                </div>
-                <span className="fw-bold">PDF Merger</span>
+                <ShieldIcon size={28} />
+                <span className="fw-bold" style={{ fontFamily: 'Outfit, sans-serif' }}>PDF <span style={{ color: '#60a5fa' }}>Merger</span></span>
               </div>
             </Col>
             <Col md={4} className="text-center mb-3 mb-md-0">
