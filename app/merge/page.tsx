@@ -103,32 +103,31 @@ export default function Home() {
   return (
     <>
       {/* Header */}
-      <header className="bg-white shadow-sm">
+      <header className="site-header sticky-top">
         <div className="container py-3">
           <div className="d-flex align-items-center justify-content-between">
-            <h1 className="h4 mb-0 fw-bold" style={{ color: '#1D9D58' }}>
-              📄 PDF Merger
-            </h1>
-            <nav>
-              <a
-                href="https://github.com/ftwtie/pdf-merger"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-decoration-none"
-              >
-                <small className="text-muted">View on GitHub →</small>
-              </a>
-            </nav>
+            <a href="/" className="d-flex align-items-center gap-2 text-decoration-none">
+              <div style={{ width: 36, height: 36, background: 'linear-gradient(135deg, #6C5CE7, #00CEC9)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 700, fontSize: 16 }}>P</div>
+              <span className="fw-bold fs-5" style={{ color: '#1A1A2E' }}>PDF Merger</span>
+            </a>
+            <div className="d-flex align-items-center gap-3">
+              <a href="/merge" className="text-decoration-none fw-semibold" style={{ color: '#6C5CE7' }}>Merge</a>
+              <a href="/split" className="text-decoration-none fw-semibold" style={{ color: '#6B7280' }}>Split</a>
+              <span className="security-badge d-none d-md-flex">🛡️ 100% Secure</span>
+            </div>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="hero-section">
-        <div className="container text-center">
-          <h1 className="display-5 fw-bold mb-3">Merge PDF files</h1>
-          <p className="lead mb-0">
-            Combine two PDF documents into one file. Fast, free, and secure.
+      <section className="hero-section" style={{ padding: '3.5rem 0' }}>
+        <div className="container text-center position-relative" style={{ zIndex: 2 }}>
+          <h1 className="hero-title" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
+            Merge PDF Files<br />
+            <span className="gradient-text">Fast, Secure & Free</span>
+          </h1>
+          <p className="hero-subtitle" style={{ fontSize: '1.05rem' }}>
+            Combine two PDF documents into one — entirely in your browser. Your files never leave your device.
           </p>
         </div>
       </section>
@@ -272,26 +271,24 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-white border-top mt-5 py-4">
+      <footer className="site-footer py-4">
         <div className="container">
-          <div className="row">
-            <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-              <small className="text-muted">
-                Built with Next.js, TypeScript & pdf-lib
-              </small>
+          <div className="row align-items-center">
+            <div className="col-md-4 text-center text-md-start mb-3 mb-md-0">
+              <a href="/" className="d-flex align-items-center gap-2 justify-content-center justify-content-md-start text-decoration-none">
+                <div style={{ width: 28, height: 28, background: 'linear-gradient(135deg, #6C5CE7, #00CEC9)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 700, fontSize: 13 }}>P</div>
+                <span className="fw-bold" style={{ color: 'rgba(255,255,255,0.9)' }}>PDF Merger</span>
+              </a>
             </div>
-            <div className="col-md-6 text-center text-md-end">
-              <small className="text-muted">
-                Open source on{' '}
-                <a
-                  href="https://github.com/ftwtie/pdf-merger"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-decoration-none"
-                >
-                  GitHub
-                </a>
-              </small>
+            <div className="col-md-4 text-center mb-3 mb-md-0">
+              <small style={{ opacity: 0.7 }}>100% client-side · Files never leave your device</small>
+            </div>
+            <div className="col-md-4 text-center text-md-end">
+              <a href="/merge" className="small">Merge</a>
+              <span className="mx-2" style={{ opacity: 0.3 }}>•</span>
+              <a href="/split" className="small">Split</a>
+              <span className="mx-2" style={{ opacity: 0.3 }}>•</span>
+              <a href="https://github.com/ftwtie/pdf-merger" target="_blank" rel="noopener noreferrer" className="small">GitHub</a>
             </div>
           </div>
         </div>

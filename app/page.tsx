@@ -45,11 +45,13 @@ export default function LandingPage() {
               <span className="fw-bold fs-5" style={{ color: '#1A1A2E' }}>PDF Merger</span>
             </div>
             <div className="d-flex align-items-center gap-3">
+              <a href="/merge" className="text-decoration-none fw-semibold" style={{ color: '#6B7280' }}>Merge</a>
+              <a href="/split" className="text-decoration-none fw-semibold" style={{ color: '#6B7280' }}>Split</a>
               <span className="security-badge d-none d-md-flex">
-                🛡️ 100% Secure — Files Never Leave Your Device
+                🛡️ 100% Secure
               </span>
               <Button href="/merge" style={{ background: 'linear-gradient(135deg, #6C5CE7, #A29BFE)', border: 'none', borderRadius: 10, fontWeight: 600, padding: '10px 24px' }}>
-                Open Tool →
+                Open Tools →
               </Button>
             </div>
           </div>
