@@ -46,8 +46,9 @@ export default function LandingPage() {
               </div>
             </a>
             <div className="d-flex align-items-center gap-3">
-              <a href="/merge" className="text-decoration-none fw-semibold" style={{ color: '#6B7280' }}>Merge</a>
-              <a href="/split" className="text-decoration-none fw-semibold" style={{ color: '#6B7280' }}>Split</a>
+              <a href="/tools" className="text-decoration-none nav-link-custom" style={{ color: '#64748b' }}>Tools</a>
+              <a href="/merge" className="text-decoration-none nav-link-custom" style={{ color: '#64748b' }}>Merge</a>
+              <a href="/split" className="text-decoration-none nav-link-custom" style={{ color: '#64748b' }}>Split</a>
               <span className="security-badge d-none d-md-flex">
                 🛡️ 100% Secure
               </span>
@@ -73,8 +74,8 @@ export default function LandingPage() {
             This service is 100% secure. Combine multiple PDF files into one — entirely in your browser.
             No uploads, no servers, no risk. Your documents stay on your device, always.
           </p>
-          <a href="/merge" className="hero-cta">
-            Start Merging — It&apos;s Free →
+          <a href="/tools" className="hero-cta">
+            Start Using — It&apos;s Free →
           </a>
           <div className="hero-trust">
             <span>🔒 Zero uploads</span>
@@ -137,7 +138,7 @@ export default function LandingPage() {
             ))}
           </Row>
           <div className="text-center mt-5">
-            <Button href="/merge" className="btn-primary-custom px-5 py-3">
+            <Button href="/tools" className="btn-primary-custom px-5 py-3">
               Try It Now — Free & Secure →
             </Button>
           </div>
@@ -179,8 +180,8 @@ export default function LandingPage() {
           <p className="mb-4" style={{ opacity: 0.85, fontSize: '1.1rem' }}>
             No signup. No uploads. No limits. 100% secure, 100% free.
           </p>
-          <Button href="/merge" size="lg" variant="light" className="fw-bold px-5 py-3" style={{ color: '#6C5CE7', borderRadius: 12, fontSize: '1.1rem' }}>
-            🔗 Merge PDFs Now
+          <Button href="/tools" size="lg" variant="light" className="fw-bold px-5 py-3" style={{ color: '#1a56db', borderRadius: 12, fontSize: '1.1rem', fontFamily: 'Outfit, sans-serif' }}>
+            🛡️ Start Using — It&apos;s Free
           </Button>
         </Container>
       </section>
