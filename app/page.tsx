@@ -121,6 +121,38 @@ export default function LandingPage() {
         </Container>
       </section>
 
+      {/* Available Tools */}
+      <section className="py-5" style={{ background: 'white' }}>
+        <Container>
+          <div className="text-center mb-5">
+            <h2 className="section-title mb-2">Available Tools</h2>
+            <p className="section-subtitle">All tools run in your browser — your files never leave your device.</p>
+          </div>
+          <Row className="g-4 justify-content-center">
+            {[
+              { icon: '🔗', title: 'Merge PDF', desc: 'Combine multiple PDF files into a single document.', href: '/merge', color: '#1a56db' },
+              { icon: '✂️', title: 'Split PDF', desc: 'Extract pages, split by range, or separate every page.', href: '/split', color: '#10b981' },
+            ].map((tool, i) => (
+              <Col md={5} key={i}>
+                <a href={tool.href} className="text-decoration-none">
+                  <Card className="tool-card h-100 border-0 p-4 text-center">
+                    <div className="feature-icon mx-auto" style={{ background: `${tool.color}12` }}>
+                      <span style={{ fontSize: 28 }}>{tool.icon}</span>
+                    </div>
+                    <h5 className="fw-bold mb-2" style={{ fontFamily: 'Outfit, sans-serif', color: '#0f172a' }}>{tool.title}</h5>
+                    <p className="mb-3" style={{ color: '#64748b', fontSize: '0.95rem' }}>{tool.desc}</p>
+                    <span className="fw-bold" style={{ color: tool.color, fontFamily: 'Outfit, sans-serif', fontSize: '0.9rem' }}>Use Tool →</span>
+                  </Card>
+                </a>
+              </Col>
+            ))}
+          </Row>
+          <div className="text-center mt-4">
+            <a href="/tools" className="fw-semibold" style={{ color: '#1a56db', fontFamily: 'Outfit, sans-serif' }}>View All Tools →</a>
+          </div>
+        </Container>
+      </section>
+
       {/* How It Works */}
       <section className="py-5" style={{ background: 'var(--bg-section)' }}>
         <Container>
