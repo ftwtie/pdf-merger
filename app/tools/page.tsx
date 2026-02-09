@@ -55,7 +55,7 @@ export default function ToolsPage() {
       </section>
 
       {/* Tools Grid */}
-      <Container style={{ marginTop: '-2rem', position: 'relative', zIndex: 10 }} className="pb-5">
+      <Container style={{ marginTop: '2rem', position: 'relative', zIndex: 10 }} className="pb-5">
         <Row className="g-4 justify-content-center">
           {tools.map((tool, i) => (
             <Col md={6} lg={5} key={i}>
