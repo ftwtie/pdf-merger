@@ -171,7 +171,7 @@ export default function SplitPage() {
       </section>
 
       {/* Tool */}
-      <Container className="pb-5" style={{ marginTop: '-1.5rem', position: 'relative', zIndex: 10 }}>
+      <Container className="pb-5" style={{ marginTop: '2rem', position: 'relative', zIndex: 10 }}>
         <Row className="justify-content-center">
           <Col lg={8}>
             <div className="tool-card p-4 p-md-5 mb-4">
