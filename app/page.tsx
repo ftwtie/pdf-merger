@@ -3,73 +3,113 @@
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 
 const features = [
-  { icon: '⚡', title: 'Lightning Fast', desc: 'Merge PDFs instantly — everything runs in your browser, no uploading needed.' },
-  { icon: '🔒', title: 'Private & Secure', desc: 'Your files never leave your device. Zero server uploads, zero risk.' },
-  { icon: '♾️', title: 'No Size Limits', desc: 'Merge files of any size without restrictions or premium paywalls.' },
-  { icon: '🎯', title: 'Drag & Drop', desc: 'Simple interface — just pick your files and hit merge.' },
-  { icon: '💸', title: '100% Free', desc: 'No subscriptions, no hidden fees, no "upgrade to unlock" tricks.' },
-  { icon: '🚫', title: 'No Signup', desc: 'Start merging immediately. No account, no email, no nonsense.' },
+  { icon: '🛡️', title: '100% Secure', desc: 'Your files are processed entirely in your browser. Nothing is uploaded to any server — ever.' },
+  { icon: '⚡', title: 'Lightning Fast', desc: 'Merge PDFs instantly with client-side processing. No waiting for uploads or downloads.' },
+  { icon: '🔒', title: 'Complete Privacy', desc: 'Zero data collection. Your documents never leave your device. We can\'t see them even if we wanted to.' },
+  { icon: '♾️', title: 'No Limits', desc: 'Merge unlimited files with no size restrictions. No premium paywalls or daily caps.' },
+  { icon: '💎', title: 'Free Forever', desc: 'No subscriptions, no hidden fees, no trials. Full functionality, completely free.' },
+  { icon: '🌐', title: 'Works Offline', desc: 'Once loaded, works without internet. Your PDFs stay on your machine, always.' },
 ];
 
 const steps = [
-  { num: '1', title: 'Upload Your PDFs', desc: 'Select the PDF files you want to combine using our simple file picker.' },
-  { num: '2', title: 'Arrange Order', desc: 'Choose which PDF comes first — your merged file follows your order.' },
-  { num: '3', title: 'Merge & Download', desc: 'Click merge and your combined PDF downloads instantly. Done!' },
+  { num: '01', title: 'Select Your PDFs', desc: 'Drag and drop or browse to select the PDF files you want to combine.' },
+  { num: '02', title: 'Arrange & Reorder', desc: 'Organize your files in the exact order you want them in the final document.' },
+  { num: '03', title: 'Merge & Download', desc: 'One click to merge. Your combined PDF downloads instantly to your device.' },
 ];
 
 const testimonials = [
-  { name: 'Sarah K.', role: 'Freelance Designer', text: 'Finally a PDF tool that doesn\'t try to charge me $12/month for something this simple. Love it!', stars: 5 },
-  { name: 'Marcus T.', role: 'Law Student', text: 'I merge case documents daily. This is faster than any desktop app I\'ve tried, and it\'s free.', stars: 5 },
-  { name: 'Priya R.', role: 'Project Manager', text: 'The fact that files stay on my computer is a huge deal for our compliance team. Bookmarked!', stars: 5 },
-  { name: 'Jake W.', role: 'Small Business Owner', text: 'Used to use Adobe for this. Switched here and never looked back. Simple and just works.', stars: 4 },
+  { name: 'Sarah K.', role: 'Freelance Designer', text: 'Finally a PDF tool that respects my privacy. No uploads, no accounts — just works. This is how all tools should be.', stars: 5 },
+  { name: 'Marcus T.', role: 'Law Student', text: 'I handle sensitive case documents daily. Knowing they never leave my laptop gives me peace of mind.', stars: 5 },
+  { name: 'Priya R.', role: 'Project Manager', text: 'Our compliance team approved this instantly — client-side processing means zero data risk. Brilliant.', stars: 5 },
+  { name: 'Jake W.', role: 'Small Business Owner', text: 'Switched from Adobe. Faster, simpler, and I don\'t have to pay $20/month for basic merging.', stars: 4 },
+];
+
+const stats = [
+  { number: '100%', label: 'Client-Side Processing' },
+  { number: '0', label: 'Files Uploaded to Servers' },
+  { number: '∞', label: 'Merges Per Day' },
+  { number: '0', label: 'Data Collected' },
 ];
 
 export default function LandingPage() {
   return (
     <>
       {/* Header */}
-      <header className="bg-white shadow-sm sticky-top">
+      <header className="site-header sticky-top">
         <Container className="py-3">
           <div className="d-flex align-items-center justify-content-between">
-            <h1 className="h4 mb-0 fw-bold" style={{ color: '#1D9D58' }}>
-              📄 PDF Merger
-            </h1>
-            <Button href="/merge" variant="outline-success" size="sm" className="fw-semibold">
-              Open Tool →
-            </Button>
+            <div className="d-flex align-items-center gap-2">
+              <div style={{ width: 36, height: 36, background: 'linear-gradient(135deg, #6C5CE7, #00CEC9)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 700, fontSize: 16 }}>
+                P
+              </div>
+              <span className="fw-bold fs-5" style={{ color: '#1A1A2E' }}>PDF Merger</span>
+            </div>
+            <div className="d-flex align-items-center gap-3">
+              <span className="security-badge d-none d-md-flex">
+                🛡️ 100% Secure — Files Never Leave Your Device
+              </span>
+              <Button href="/merge" style={{ background: 'linear-gradient(135deg, #6C5CE7, #A29BFE)', border: 'none', borderRadius: 10, fontWeight: 600, padding: '10px 24px' }}>
+                Open Tool →
+              </Button>
+            </div>
           </div>
         </Container>
       </header>
 
       {/* Hero */}
-      <section className="hero-section" style={{ padding: '5rem 0' }}>
-        <Container className="text-center">
-          <h1 className="display-4 fw-bold mb-3">Merge PDFs in Seconds — 100% Secure</h1>
-          <p className="lead mb-4 mx-auto" style={{ maxWidth: 600, opacity: 0.9 }}>
-            This service is 100% secure. Combine multiple PDF files into one document — right in your browser. 
-            No uploads, no signups, no limits. Your files never leave your device.
+      <section className="hero-section">
+        <Container className="text-center position-relative" style={{ zIndex: 2 }}>
+          <div className="hero-badge">
+            🛡️ This service is 100% secure — your files never leave your browser
+          </div>
+          <h1 className="hero-title">
+            Merge PDFs in Seconds<br />
+            <span className="gradient-text">100% Secure & Private</span>
+          </h1>
+          <p className="hero-subtitle">
+            This service is 100% secure. Combine multiple PDF files into one — entirely in your browser.
+            No uploads, no servers, no risk. Your documents stay on your device, always.
           </p>
-          <Button href="/merge" size="lg" className="btn-primary-custom px-5 py-3 fs-5">
-            🔗 Start Merging — It&apos;s Free
-          </Button>
-          <p className="mt-3 mb-0" style={{ opacity: 0.7 }}>
-            <small>No account required • Works offline • Files stay on your device</small>
-          </p>
+          <a href="/merge" className="hero-cta">
+            Start Merging — It&apos;s Free →
+          </a>
+          <div className="hero-trust">
+            <span>🔒 Zero uploads</span>
+            <span>⚡ Instant processing</span>
+            <span>🚫 No account needed</span>
+            <span>💻 Works offline</span>
+          </div>
         </Container>
       </section>
 
+      {/* Stats Bar */}
+      <Container>
+        <div className="stats-bar">
+          <Row className="g-4">
+            {stats.map((s, i) => (
+              <Col xs={6} md={3} key={i} className="stat-item">
+                <div className="stat-number">{s.number}</div>
+                <div className="stat-label">{s.label}</div>
+              </Col>
+            ))}
+          </Row>
+        </div>
+      </Container>
+
       {/* Features */}
-      <section className="py-5">
+      <section className="py-5 mt-4">
         <Container>
-          <h2 className="text-center fw-bold mb-2">Why PDF Merger?</h2>
-          <p className="text-center text-muted mb-5">Everything you need, nothing you don&apos;t.</p>
+          <div className="text-center mb-5">
+            <h2 className="section-title mb-2">Why Choose PDF Merger?</h2>
+            <p className="section-subtitle">Security and simplicity — no compromises.</p>
+          </div>
           <Row className="g-4">
             {features.map((f, i) => (
               <Col md={4} key={i}>
-                <Card className="tool-card h-100 border-0 p-4 text-center">
-                  <div className="feature-icon mx-auto">{f.icon}</div>
+                <Card className="tool-card h-100 border-0 p-4">
+                  <div className="feature-icon">{f.icon}</div>
                   <h5 className="fw-bold mb-2">{f.title}</h5>
-                  <p className="text-muted mb-0 small">{f.desc}</p>
+                  <p className="mb-0" style={{ color: '#6B7280', fontSize: '0.95rem' }}>{f.desc}</p>
                 </Card>
               </Col>
             ))}
@@ -78,27 +118,24 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works */}
-      <section className="py-5" style={{ background: 'white' }}>
+      <section className="py-5" style={{ background: 'var(--bg-section)' }}>
         <Container>
-          <h2 className="text-center fw-bold mb-2">How It Works</h2>
-          <p className="text-center text-muted mb-5">Three steps. That&apos;s it.</p>
+          <div className="text-center mb-5">
+            <h2 className="section-title mb-2">How It Works</h2>
+            <p className="section-subtitle">Three simple steps. No signup required.</p>
+          </div>
           <Row className="g-4 justify-content-center">
             {steps.map((s, i) => (
               <Col md={4} key={i} className="text-center">
-                <div
-                  className="rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                  style={{ width: 64, height: 64, background: 'linear-gradient(135deg, #1D9D58, #16a34a)', color: 'white', fontSize: 24, fontWeight: 700 }}
-                >
-                  {s.num}
-                </div>
+                <div className="step-number">{s.num}</div>
                 <h5 className="fw-bold mb-2">{s.title}</h5>
-                <p className="text-muted small">{s.desc}</p>
+                <p style={{ color: '#6B7280', fontSize: '0.95rem' }}>{s.desc}</p>
               </Col>
             ))}
           </Row>
-          <div className="text-center mt-4">
-            <Button href="/merge" className="btn-primary-custom px-5">
-              Try It Now →
+          <div className="text-center mt-5">
+            <Button href="/merge" className="btn-primary-custom px-5 py-3">
+              Try It Now — Free & Secure →
             </Button>
           </div>
         </Container>
@@ -107,22 +144,23 @@ export default function LandingPage() {
       {/* Testimonials */}
       <section className="py-5">
         <Container>
-          <h2 className="text-center fw-bold mb-2">What People Are Saying</h2>
-          <p className="text-center text-muted mb-5">Join thousands who merge smarter.</p>
+          <div className="text-center mb-5">
+            <h2 className="section-title mb-2">Trusted by Thousands</h2>
+            <p className="section-subtitle">See why people choose privacy-first PDF merging.</p>
+          </div>
           <Row className="g-4">
             {testimonials.map((t, i) => (
               <Col md={6} lg={3} key={i}>
-                <Card className="tool-card h-100 border-0 p-4">
-                  <div className="mb-2" style={{ color: '#f59e0b' }}>
+                <div className="testimonial-card">
+                  <div className="testimonial-stars mb-3">
                     {'★'.repeat(t.stars)}{'☆'.repeat(5 - t.stars)}
                   </div>
-                  <p className="small mb-3">&ldquo;{t.text}&rdquo;</p>
+                  <p className="testimonial-text mb-3">&ldquo;{t.text}&rdquo;</p>
                   <div className="mt-auto">
-                    <strong className="small">{t.name}</strong>
-                    <br />
-                    <small className="text-muted">{t.role}</small>
+                    <div className="testimonial-author">{t.name}</div>
+                    <div className="testimonial-role">{t.role}</div>
                   </div>
-                </Card>
+                </div>
               </Col>
             ))}
           </Row>
@@ -130,34 +168,43 @@ export default function LandingPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-5" style={{ background: 'linear-gradient(135deg, #1D9D58 0%, #16a34a 100%)' }}>
-        <Container className="text-center text-white">
-          <h2 className="fw-bold mb-3">Ready to Merge Your PDFs?</h2>
-          <p className="mb-4" style={{ opacity: 0.9 }}>No signup. No limits. Just results.</p>
-          <Button href="/merge" size="lg" variant="light" className="fw-bold px-5 py-3" style={{ color: '#1D9D58' }}>
+      <section className="cta-section py-5">
+        <Container className="text-center text-white position-relative" style={{ zIndex: 2 }}>
+          <h2 className="fw-bold mb-3" style={{ fontSize: '2.2rem', letterSpacing: '-0.02em' }}>
+            Ready to Merge Your PDFs Securely?
+          </h2>
+          <p className="mb-4" style={{ opacity: 0.85, fontSize: '1.1rem' }}>
+            No signup. No uploads. No limits. 100% secure, 100% free.
+          </p>
+          <Button href="/merge" size="lg" variant="light" className="fw-bold px-5 py-3" style={{ color: '#6C5CE7', borderRadius: 12, fontSize: '1.1rem' }}>
             🔗 Merge PDFs Now
           </Button>
         </Container>
       </section>
 
       {/* Footer */}
-      <footer className="bg-white border-top py-4">
+      <footer className="site-footer py-5">
         <Container>
           <Row className="align-items-center">
             <Col md={4} className="text-center text-md-start mb-3 mb-md-0">
-              <strong style={{ color: '#1D9D58' }}>📄 PDF Merger</strong>
+              <div className="d-flex align-items-center gap-2 justify-content-center justify-content-md-start">
+                <div style={{ width: 28, height: 28, background: 'linear-gradient(135deg, #6C5CE7, #00CEC9)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 700, fontSize: 13 }}>
+                  P
+                </div>
+                <span className="fw-bold">PDF Merger</span>
+              </div>
             </Col>
             <Col md={4} className="text-center mb-3 mb-md-0">
-              <small className="text-muted">
-                Built with Next.js &bull; 100% client-side &bull; Open source
+              <small style={{ opacity: 0.7 }}>
+                100% client-side processing · Your files never leave your device
               </small>
             </Col>
             <Col md={4} className="text-center text-md-end">
-              <a href="https://github.com/ftwtie/pdf-merger" target="_blank" rel="noopener noreferrer" className="text-muted small">
+              <a href="https://github.com/ftwtie/pdf-merger" target="_blank" rel="noopener noreferrer" className="small">
                 GitHub
               </a>
-              <span className="text-muted mx-2">•</span>
-              <a href="/merge" className="text-muted small">
+              <span className="mx-2" style={{ opacity: 0.3 }}>•</span>
+              <a href="/merge" className="small">
                 Merge Tool
               </a>
             </Col>

@@ -4,8 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "PDF Merger - Merge Two PDFs Online",
-  description: "Easily merge two PDF files into one document",
+  title: "PDF Merger — Merge PDFs Online, 100% Secure & Private",
+  description: "Merge PDF files securely in your browser. 100% secure — your files never leave your device. No uploads, no signups, no limits. Free forever.",
 };
 
 export default function RootLayout({
