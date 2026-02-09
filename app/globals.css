@@ -381,7 +381,7 @@ a:hover {
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
   padding: 2rem;
-  margin-top: -3rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
   position: relative;
   z-index: 2;
