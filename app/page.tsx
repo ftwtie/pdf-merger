@@ -44,10 +44,10 @@ export default function LandingPage() {
       {/* Hero */}
       <section className="hero-section" style={{ padding: '5rem 0' }}>
         <Container className="text-center">
-          <h1 className="display-4 fw-bold mb-3">Merge PDFs in Seconds</h1>
+          <h1 className="display-4 fw-bold mb-3">Merge PDFs in Seconds — 100% Secure</h1>
           <p className="lead mb-4 mx-auto" style={{ maxWidth: 600, opacity: 0.9 }}>
-            Combine multiple PDF files into one document — right in your browser. 
-            No uploads, no signups, no limits. Just fast, private PDF merging.
+            This service is 100% secure. Combine multiple PDF files into one document — right in your browser. 
+            No uploads, no signups, no limits. Your files never leave your device.
           </p>
           <Button href="/merge" size="lg" className="btn-primary-custom px-5 py-3 fs-5">
             🔗 Start Merging — It&apos;s Free
